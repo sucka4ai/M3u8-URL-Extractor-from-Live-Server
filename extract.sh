@@ -3,6 +3,18 @@
 
 set -e
 
+#!/bin/bash
+# Lockfile to prevent concurrent runs
+LOCKFILE="$HOME/M3u8-URL-Extractor-from-Live-Server/extract.lock"
+
+# Try to acquire lock
+exec 200>"$LOCKFILE"
+flock -n 200 || { 
+    echo "Another run is already in progress. Exiting..."
+    exit 1
+}
+
+
 REPO_DIR="$HOME/M3u8-URL-Extractor-from-Live-Server"
 MIRROR_DIR="$REPO_DIR/tmp_m3u"
 ALL_LINKS="$REPO_DIR/IPTV.m3u"
