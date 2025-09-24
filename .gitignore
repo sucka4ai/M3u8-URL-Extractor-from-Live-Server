@@ -1,0 +1,6 @@
+# Ignore httrack cache and logs
+hts-cache/
+hts-log.txt
+doit.log
+extract.log
+
